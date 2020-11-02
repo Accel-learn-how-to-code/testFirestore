@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "236647504371",
+    "firebase_url": "https://accelstest.firebaseio.com",
+    "project_id": "accelstest",
+    "storage_bucket": "accelstest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236647504371:android:42fb5449718b73d57c5a86",
+        "android_client_info": {
+          "package_name": "com.ltddtuan9"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCye4UGRzpyn827g335GeSGqTq0fJObdOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236647504371:android:06ee5692073b10357c5a86",
+        "android_client_info": {
+          "package_name": "com.reactfirestoretest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCye4UGRzpyn827g335GeSGqTq0fJObdOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236647504371:android:c57785c505f454ae7c5a86",
+        "android_client_info": {
+          "package_name": "com.reactfirestoretest2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCye4UGRzpyn827g335GeSGqTq0fJObdOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236647504371:android:8fef54e09daf10447c5a86",
+        "android_client_info": {
+          "package_name": "vn.com.studentManager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCye4UGRzpyn827g335GeSGqTq0fJObdOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236647504371-flbnr3n416nhl559d5hnnc96cmgi482j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
