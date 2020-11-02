@@ -1,130 +1,82 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, FlatList, ScrollView, Text} from 'react-native';
 
-import React, {useEffect} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import firestore from '@react-native-firebase/firestore';
+import {Appbar, TextInput, Button, List} from 'react-native-paper';
 
-const App = () => {
+export default function App() {
+  const [todo, setTodo] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [todos, setTodos] = useState([]);
+
+  const ref = firestore().collection('todos');
+
   useEffect(() => {
-    firestore()
-      .collection('Animals')
-      .get()
-      .then((querySnapshot) => {
-        console.log('Animals Number : ' + querySnapshot.size);
-        querySnapshot.forEach((documentSnapshot) => {
-          console.log(
-            'Animal ID: ',
-            documentSnapshot.id,
-            documentSnapshot.data(),
-          );
+    return ref.onSnapshot((querySnapshot) => {
+      const list = [];
+      querySnapshot.forEach((doc) => {
+        const {title, complete} = doc.data();
+        list.push({
+          id: doc.id,
+          title,
+          complete,
         });
       });
+
+      setTodos(list);
+
+      if (loading) {
+        setLoading(false);
+      }
+    });
   }, []);
+
+  async function addTodo() {
+    await ref.add({
+      title: todo,
+      complete: false,
+    });
+    setTodo('');
+  }
+
+  function Todo({id, title, complete}) {
+    async function toggleComplete() {
+      await firestore().collection('todos').doc(id).update({
+        complete: !complete,
+      });
+    }
+
+    return (
+      <List.Item
+        title={title}
+        onPress={() => toggleComplete()}
+        left={(props) => (
+          <List.Icon {...props} icon={complete ? 'check' : 'cancel'} />
+        )}
+      />
+    );
+  }
+
+  //render differently if loading state is true
+  if (loading) {
+    return null;
+  }
+
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <Appbar>
+        <Appbar.Content title={'TODOs List'} />
+      </Appbar>
+      <FlatList
+        style={{flex: 1}}
+        data={todos}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => <Todo {...item} />}
+      />
+      <TextInput label={'New Todo'} onChangeText={setTodo} />
+      <Button onPress={() => addTodo()}>Add TODO</Button>
     </>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
-
-export default App;
+const styles = StyleSheet.create({});
